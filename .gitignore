@@ -1,2 +1,5 @@
+.**
+!.gitignore
+
 /cache/
 /config/development/
