@@ -1,6 +1,6 @@
 <?php
 /*
- * php-telegram-bot v0.1.0
+ * php-telegram-bot v0.1.1
  *
  * very simple php telegram bot without any dependencies
  */
@@ -220,17 +220,18 @@ class Commands {
     private function __wakeup(){}
 
     public static function start(){
-        return "Hello man, print <code>help</code> to get help";
+        return "Hello man, type <code>help</code> to get help";
     }
 
     public static function help(){
         $class = new \ReflectionClass("\Telegram\Commands");
-        return "<code>".array_column( (array)$class->getMethods(\ReflectionMethod::IS_STATIC), "name")."</code>";
+        return "<code>".print_r(array_column(
+            (array)$class->getMethods(\ReflectionMethod::IS_STATIC), "name"), true)."</code>";
     }
 
     public static function version(){
         $class = new \ReflectionClass("\Telegram\Commands");
-        return "php-telegram-bot v0.1.0";
+        return "php-telegram-bot v0.1.2";
     }
 
     public static function echo($decoded){
@@ -239,7 +240,7 @@ class Commands {
 
     public static function status($decoded){
         if(in_array($decoded["message"]["from"]["username"], Config::get("admins"))){
-            return shell_exec("./mytop.sh | xargs -0 bot.php sendMessage ".Config::get("channel"));
+            return shell_exec("./mytop.sh");
         }else{
             return "You are not allowed to run this command!";
         }
