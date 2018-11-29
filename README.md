@@ -1,4 +1,4 @@
-# php-telegram-bot v.0.1.0
+# php-telegram-bot v0.1.0
 very simple php telegram bot without any dependencies
 
 
