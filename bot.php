@@ -267,7 +267,7 @@ if(php_sapi_name() === "cli"){
 if(empty($args)){
     Api::read();
     exit(0);
-} elseif(count($args) === 1){
+} elseif(count($args) === 0){
     echo "Missing operand\n";
     exit(1);
 }
